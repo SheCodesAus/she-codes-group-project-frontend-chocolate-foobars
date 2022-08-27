@@ -1,1 +1,1 @@
-# plus-group-project-frontend-template
+# Chocolate FooBars
