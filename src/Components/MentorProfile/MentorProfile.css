@@ -1,0 +1,9 @@
+.mentor-profile {
+    background-color: var(--bg-light)
+}
+
+.mentor-profile-header {
+    margin: 0 auto;
+    font-family: var(--main-font);
+    font-size: 60px;
+}
