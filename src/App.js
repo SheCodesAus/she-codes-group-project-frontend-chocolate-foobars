@@ -4,11 +4,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './Components/Nav';
 
 // import pages
+
+import Dashboard from './pages/Dashboard'
+import RegisterForm from './pages/RegisterPage'
+
+
 import LoginPage from './pages/LoginPage';
+
 
 function App() {
 
   return (
+
+
     <Router>
       <div>
         {/* <Nav /> */}
@@ -18,7 +26,12 @@ function App() {
         </Routes>
       </div>
     </Router>
+
   );
 }
 
-export default App;
+export default App
+
+
+
+
