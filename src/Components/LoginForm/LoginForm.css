@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+}
+
+form {
+    background-color: var(--o-light);
+    border-radius: 5px;
+    font-family: var(--main-font);
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+}
