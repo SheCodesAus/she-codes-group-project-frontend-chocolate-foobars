@@ -59,7 +59,7 @@ const LoginForm = () => {
         <button type="submit" onClick={handleSubmit}>Login</button>
         </form>
         <div>
-        <button type="register">Register</button>
+        <button type="register" >Register</button>
         </div>
         </div>
 );
