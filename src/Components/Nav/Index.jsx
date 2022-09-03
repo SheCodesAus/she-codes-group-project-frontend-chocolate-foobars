@@ -1,7 +1,7 @@
 import React ,{ useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Nav.css"
-import Logo from "./images/ChoCode-logo-full"
+import Logo from "../../images/ChoCode-logo-full.png";
 
 const Nav = () => {
     const location = useLocation()
