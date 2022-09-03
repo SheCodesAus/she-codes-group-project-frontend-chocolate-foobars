@@ -7,6 +7,7 @@
   
   /* font */
   --main-font: 'Raleway', calibri, sans-serif;
+  --highlight-font: 'Satisfy', Sans-serif;
   --small-font: 400;
   --standard-font: 600;
   --bolder-font: 700;
@@ -19,6 +20,7 @@
   --bg-light: #FDF3E5;
   --font-dark: #000000;
   --font-light: #ffffff;
+
 }
 
 html body {

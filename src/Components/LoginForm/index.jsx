@@ -41,6 +41,10 @@ const LoginForm = () => {
 
 
     return (
+        <div>
+        <div className="hero">
+        <h1 class="hero-text">We <span class="glow-up"> teach </span>technical skills, <span class="glow-up">build </span>career pathways and <span class="glow-up">inspire</span> woman to code</h1>
+        </div>
         <div className="container">
         <form>
         <div>
@@ -56,10 +60,11 @@ const LoginForm = () => {
         id="password" 
         placeholder="Password" 
         onChange={handleChange}/></div>
+        <div className="container">
         <button type="submit" onClick={handleSubmit}>Login</button>
-        <button type="register" >Register</button>
+        <button type="register" >Register</button></div>
         </form>
-        </div>
+        </div></div>
 );
 } 
 
