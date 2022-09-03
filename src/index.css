@@ -36,3 +36,12 @@ button {
   min-width: 120px;
   border: none;
 }
+
+button:hover {
+  background-color: var(--p-dark);
+  color: var(--font-light);
+  border-radius: 10px;
+  min-height: 30px;
+  min-width: 120px;
+  border: none;
+}

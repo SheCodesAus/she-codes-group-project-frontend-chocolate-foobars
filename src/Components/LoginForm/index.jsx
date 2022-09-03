@@ -57,10 +57,8 @@ const LoginForm = () => {
         placeholder="Password" 
         onChange={handleChange}/></div>
         <button type="submit" onClick={handleSubmit}>Login</button>
-        </form>
-        <div>
         <button type="register" >Register</button>
-        </div>
+        </form>
         </div>
 );
 } 
