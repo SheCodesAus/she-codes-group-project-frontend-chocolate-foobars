@@ -43,7 +43,7 @@ const LoginForm = () => {
     return (
         <div>
         <div className="hero">
-        <h1 class="hero-text">We <span class="hero-highlight"> teach </span>technical skills,<span class="hero-highlight">build </span>career pathways and <span class="hero-highlight">inspire</span> woman to code</h1>
+        <h1 class="hero-text">We <span class="glow-up"> teach </span>technical skills, <span class="glow-up">build </span>career pathways and <span class="glow-up">inspire</span> woman to code</h1>
         </div>
         <div className="container">
         <form>

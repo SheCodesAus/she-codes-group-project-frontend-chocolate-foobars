@@ -10,7 +10,7 @@
     align-items: space-between;
 }
 
-.hero-highlight {
+.glow-up {
     font-family: var(--highlight-font);
     font-size: 80px;
     text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 21px #ffa300, 0 0 41px #ffa300, 0 0 46px #ffa300, 0 0 50px #ffa300, 0 0 75px #ffa300
