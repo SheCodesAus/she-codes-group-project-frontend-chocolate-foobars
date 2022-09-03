@@ -23,8 +23,9 @@ const Nav = () => {
         <Link to = "/" onClick={LogOut}>Logout</Link>)
         :
         (<Link to = "/dashboard">Dashboard</Link>)}
-        <Link to = "/login">Login</Link>
-        <Link to = "/CreateProject">Register</Link>
+        <Link to = "/">Login</Link>
+        <Link to = "/register">Register</Link>
+        <Link to = "/profile">Profile</Link>
        </nav>
     );
 }
