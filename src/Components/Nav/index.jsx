@@ -1,6 +1,7 @@
 import React ,{ useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Nav.css"
+import Logo from "./images/ChoCode-logo-full"
 
 const Nav = () => {
     const location = useLocation()
@@ -19,6 +20,7 @@ const Nav = () => {
     ) 
     return (
        <nav className="navbar">
+         <div id="heroimage"><img src={ Logo } alt="Logo" /></div>
         {LoggedIn ? (
         <Link to = "/" onClick={LogOut}>Logout</Link>)
         :
