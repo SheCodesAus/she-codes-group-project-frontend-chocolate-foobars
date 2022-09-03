@@ -1,5 +1,21 @@
+
 .mentor-profile {
-    background-color: var(--bg-light)
+    background-color: var(--o-light);
+    border-radius: 5px;
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.mentor-profile-body {
+    justify-content: center;
+    padding: 20px 10px;
+}
+
+.profile-container {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .mentor-profile-header {
@@ -7,3 +23,13 @@
     font-family: var(--main-font);
     font-size: 60px;
 }
+
+.mentor-input-field {
+    display: grid;
+    height: 200px;
+    width: 50%;
+    margin-left: 20px;
+    margin-right: 10px;
+    float: right;
+}
+

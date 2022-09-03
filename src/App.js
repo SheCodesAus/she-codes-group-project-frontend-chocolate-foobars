@@ -7,7 +7,7 @@ import Nav from './Components/Nav';
 
 import RegisterForm from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage';
-import MentorProfile from './pages/MentorProfile'
+import MentorProfile from './pages/MentorProfilePage'
 
 
 function App() {
