@@ -21,13 +21,14 @@ const Nav = () => {
     return (
        <nav className="navbar">
          <div id="heroimage"><img src={ Logo } alt="Logo" /></div>
+         <div className="right-content">
         {LoggedIn ? (
         <Link to = "/" onClick={LogOut}>Logout</Link>)
         :
         (<Link to = "/dashboard">Dashboard</Link>)}
         <Link to = "/">Login</Link>
         <Link to = "/register">Register</Link>
-        <Link to = "/profile">Profile</Link>
+        <Link to = "/profile">Profile</Link></div>
        </nav>
     );
 }
