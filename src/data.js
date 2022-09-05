@@ -1,7 +1,7 @@
 export const oneMentor = {
     "id": 3,
     "First_name": "Marivic",
-    "dLast_name": "Vasquez",
+    "Last_name": "Vasquez",
     "Username": "marva",
     "Email": "marva@gmail.com",
     "Phone_number": 61413890639,

@@ -20,8 +20,6 @@ const initialState = {
     Is_active: "",
     Position: "",
     status: "1",
-    Date_joined: "",
-    Last_login: "",     //Need to figure out how to use system time for this field
 }
 
 function RegisterForm() {
