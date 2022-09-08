@@ -1,13 +1,61 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import DataTable from 'react-data-table-component';
 
 
 const Dashboard = () => {
 
-    const [filterText, setFilterText] = React.useState('');
+    // const [MentorData, setMentorData] = useState([]);
+
+    // useEffect(() => {
+    //     console.log("mentor fetch");
+    //     console.log(process.env.REACT_APP_API_URL);
+    //     console.log(`${process.env.REACT_APP_API_URL}users/`);
+    //     fetch(`${process.env.REACT_APP_API_URL}users/`)
+    //       .then((results) => {
+    //         console.log(results);
+    //         return results.json();
+    //       })
+    //       .then((data) => {
+    //         setMentorData(data);
+    //       })
+    //       .catch((e) => {
+    //         console.log("OH NOOO: ", e);
+    //       });
+    //   }, []);
+
+const MentorData = [
+      { name: "Mohammad", state: "QLD", status: "onboarded" },
+      { name: "Nayeem Raihan ", state: "NSW", status: "application received" },
+  ];
+
+const FilterComponent = ({ filterText, onFilter, onClear }) => (
+	<>
+		<input className="TextField"
+			id="search"
+			type="text"
+			placeholder="Filter By Name"
+			aria-label="Search Input"
+			value={filterText}
+			onChange={onFilter}
+		/>
+		<button className="ClearButton" type="button" onClick={onClear}>
+			X
+		</button>
+	</>
+);
+
+    
+    const columns = [
+        { name: "Name", selector: row => row.name, sortable: true },
+        { name: "State", selector: row => row.state, sortable: true  },
+        { name: "Status", selector: row => row.status, sortable: true, formatter: (cell, row) => <a href={cell}> {cell} </a>
+      },
+    ];
+
+  const [filterText, setFilterText] = React.useState('');
 	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
-	const filteredItems = data.filter(
-		item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
+	const filteredItems = MentorData.filter(
+		item => item.state && item.state.toLowerCase().includes(filterText.toLowerCase()),
 	);
 
 	const subHeaderComponentMemo = React.useMemo(() => {
@@ -22,18 +70,6 @@ const Dashboard = () => {
 			<FilterComponent onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
 		);
 	}, [filterText, resetPaginationToggle]);
-
-const data = [
-    { name: "Mohammad", surname: "Faisal", birthYear: 1995 },
-    { name: "Nayeem Raihan ", surname: "Shuvo", birthYear: 1994 },
-];
-
-const columns = [
-    { name: "Name", selector: row => row.name, sortable: true },
-    { name: "Surname", selector: row => row.surname, sortable: true  },
-    { name: "Birth Year", selector: row => row.birthYear, sortable: true  },
-];
-
 
     return (
         <DataTable
