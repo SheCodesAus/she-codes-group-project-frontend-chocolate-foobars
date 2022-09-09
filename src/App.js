@@ -7,7 +7,8 @@ import Nav from './Components/Nav';
 
 import RegisterForm from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage';
-import MentorProfile from './pages/MentorProfilePage'
+import MentorProfile from './pages/MentorProfilePage';
+import DashboardPage from './pages/Dashboard';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/register" element={<RegisterForm />} />
           <Route exact path="/profile" element={<MentorProfile />} />
+          <Route exact path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </div>
     </Router>
