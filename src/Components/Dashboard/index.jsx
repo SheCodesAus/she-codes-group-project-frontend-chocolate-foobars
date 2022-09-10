@@ -4,55 +4,77 @@ import DataTable from 'react-data-table-component';
 
 const Dashboard = () => {
 
-    // const [MentorData, setMentorData] = useState([]);
+    const token = window.localStorage.getItem("token",);
 
-    // useEffect(() => {
-    //     console.log("mentor fetch");
-    //     console.log(process.env.REACT_APP_API_URL);
-    //     console.log(`${process.env.REACT_APP_API_URL}users/`);
-    //     fetch(`${process.env.REACT_APP_API_URL}users/`)
-    //       .then((results) => {
-    //         console.log(results);
-    //         return results.json();
-    //       })
-    //       .then((data) => {
-    //         setMentorData(data);
-    //       })
-    //       .catch((e) => {
-    //         console.log("OH NOOO: ", e);
-    //       });
-    //   }, []);
+    const [MentorData, setMentorData] = useState([]);
 
-const MentorData = [
-      { name: "Mohammad", state: "QLD", status: "onboarded" },
-      { name: "Nayeem Raihan ", state: "NSW", status: "application received" },
-  ];
+    useEffect(() => {
+        console.log("mentor fetch");
+        fetch(`${process.env.REACT_APP_API_URL}users/`,
+        {
+            headers: {
+                Accept: 'application/json',
+                "Authorization": `Token ${token}`
+            }
+          })
+        .then((results) => {
+            console.log(results);
+            console.log(token)
+            return results.json();
+        })
+        .then((data) => {
+            setMentorData(data);
+        })
+        .catch((e) => {
+            console.log("Error: ", e);
+        });
+    }, []);
 
-const FilterComponent = ({ filterText, onFilter, onClear }) => (
+// const MentorData = [
+//       { first_name: "Mohammad", state: "QLD", status: "onboarded" },
+//       { first_name: "Nayeem", state: "NSW", status: "application received" },
+//   ];
+
+const FilterComponentOne = ({ filterText, onFilter, onClear }) => (
 	<>
-		<input className="TextField"
-			id="search"
-			type="text"
-			placeholder="Filter By Name"
-			aria-label="Search Input"
-			value={filterText}
-			onChange={onFilter}
-		/>
-		<button className="ClearButton" type="button" onClick={onClear}>
-			X
-		</button>
+    <select 
+        className="custom-select"
+        aria-label="Filter Mentors By State"
+        onChange={onFilter} value={filterText}
+    >
+        <option value="All">Filter By State</option>
+        <option value="QLD">QLD</option>
+        <option value="NSW">NSW</option>
+        <option value="WA">WA</option>
+    </select>
+
 	</>
 );
 
+const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
+	<>
+
+    <select 
+        className="custom-select"
+        aria-label="Filter Mentors By Status"
+        onChange={onFilter} value={filterText}>
+        <option value="All">Filter By Status</option>
+        <option value="Application received">Application received</option>
+        <option value="Position offered">Position offered</option>
+    </select>
+
+	</>
+);
     
     const columns = [
-        { name: "Name", selector: row => row.name, sortable: true },
+        { name: "First Name", selector: row => row.first_name, sortable: true },
+        { name: "Last Name", selector: row => row.last_name, sortable: true },
+        { name: "Email", selector: row => row.email, sortable: true },
         { name: "State", selector: row => row.state, sortable: true  },
-        { name: "Status", selector: row => row.status, sortable: true, formatter: (cell, row) => <a href={cell}> {cell} </a>
-      },
+        { name: "Status", selector: row => row.status, sortable: true },
     ];
 
-  const [filterText, setFilterText] = React.useState('');
+    const [filterText, setFilterText] = React.useState('');
 	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 	const filteredItems = MentorData.filter(
 		item => item.state && item.state.toLowerCase().includes(filterText.toLowerCase()),
@@ -67,9 +89,12 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
 		};
 
 		return (
-			<FilterComponent onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
-		);
+			<FilterComponentOne onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+		)
+        ;
 	}, [filterText, resetPaginationToggle]);
+
+    
 
     return (
         <DataTable
