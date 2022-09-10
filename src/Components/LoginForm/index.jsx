@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ({setLoggedInUser}) => {
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
@@ -26,15 +26,23 @@ const LoginForm = () => {
             body: JSON.stringify(credentials),
         }
         );
-        return response.json();
+        console.log(response);
+        if(response.status === 200) {
+            return response.json();
+        }
     }
         
     const handleSubmit = (e) => {
         e.preventDefault();
         if (credentials.username && credentials.password) {
-            postData().then((response) => {
-                window.localStorage.setItem("token", response.token);
-                navigate("/");
+            postData().then((data) => {
+                window.localStorage.setItem("token", data.token);
+                setLoggedInUser({id: data.id, isSuperUser: data.isSuperUser})
+                if (data.isSuperUser === 1) {
+                    navigate("/dashboard");
+                } else if (data.isSuperUser === 0) {
+                    navigate(`/profile/${data.id}`)
+                }
             });
         }
     };

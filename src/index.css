@@ -47,3 +47,9 @@ button:hover {
   min-width: 120px;
   border: none;
 }
+
+.error-section {
+  display: flex;
+  margin: auto;
+  padding: auto;
+}
