@@ -13,9 +13,23 @@
 }
 
 .profile-container {
+    display: grid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-container-inline {
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.input-field-inline {
+    display: flex;
+    height: 200px;
+    width: 50%;
+    margin-left: 20px;
+    float: righ;
 }
 
 .mentor-profile-header {
@@ -24,12 +38,5 @@
     font-size: 60px;
 }
 
-.mentor-input-field {
-    display: grid;
-    height: 200px;
-    width: 50%;
-    margin-left: 20px;
-    margin-right: 10px;
-    float: right;
-}
+
 
