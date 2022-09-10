@@ -36,13 +36,15 @@ const LoginForm = ({setLoggedInUser}) => {
         e.preventDefault();
         if (credentials.username && credentials.password) {
             postData().then((data) => {
+            console.log(data)    
                 window.localStorage.setItem("token", data.token);
-                setLoggedInUser({id: data.id, isSuperUser: data.isSuperUser})
-                if (data.isSuperUser === 1) {
+                setLoggedInUser({id: data.id, isSuperUser: data.superuser})
+                if (data.superuser === true) {
                     navigate("/dashboard");
-                } else if (data.isSuperUser === 0) {
+                } else if (data.superuser === false) {
                     navigate(`/profile/${data.id}`)
                 }
+                // navigate(`/profile/${data.id}`)
             });
         }
     };

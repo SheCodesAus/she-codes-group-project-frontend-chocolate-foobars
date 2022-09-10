@@ -25,8 +25,8 @@ const Nav = () => {
         {LoggedIn ? (
         <Link to = "/" onClick={LogOut}>Logout</Link>)
         :
-        (<Link to = "/dashboard">Dashboard</Link>)}
-        <Link to = "/">Login</Link>
+        (<Link to = "/">Login</Link>)}
+        <Link to = "/dashboard">Dashboard</Link>
         <Link to = "/register">Register</Link>
         <Link to = "/profile">Profile</Link></div>
        </nav>
