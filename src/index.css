@@ -52,4 +52,5 @@ button:hover {
   display: flex;
   margin: auto;
   padding: auto;
+  justify-content: center;
 }

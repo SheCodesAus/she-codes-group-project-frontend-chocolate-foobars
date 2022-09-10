@@ -14,7 +14,7 @@ import NotFound from './pages/NotFound'
 
 function App() {
 
-  const [loggedInUser, setLoggedInUser] = useState({id:"",isSuperUser:0})
+  const [loggedInUser, setLoggedInUser] = useState({id:"",isSuperUser:false})
   
 
   return (
