@@ -4,7 +4,19 @@ import { useNavigate } from "react-router-dom";
 import "./MentorProfile.css"
 
 const initialState = {
-    "mentor_input": "",
+    firstName: "",
+    lastNname: "",
+    userName: "",
+    passWord: "",
+    email: "",
+    phoneNumber: "",
+    cv: "",
+    state: "",
+    interviewNotes: "",
+    feedback: "",
+    mentorComments: "",
+    position: "",
+    status: "1",
 }
 
 const MentorProfile = () => {
@@ -18,70 +30,143 @@ const MentorProfile = () => {
 
     const [formData, setFormData] = useState(initialState);
 
-    const handleInputChange = (e) => {
-        const newState = {
-            ...formData,
-            [e.target.name]: e.target.value
-        }      
-        setFormData(newState);
-    }
+    // const handleInputChange = (e) => {
+    //     const newState = {
+    //         ...formData,
+    //         [e.target.name]: e.target.value
+    //     }      
+    //     setFormData(newState);
+    // }
+
+    // const handleChange = (e) => {
+    //     setData({ ...data, [e.target.name]: e.target.value });
+    // };
+    
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log(data);
+    // };
     
     return (
-        <div className = "form">
+        <form className = "form">
             <div className = "profile-body">
-                {/* <div className = "profile-header">
-                    Mentor Profile
-                </div>  */}
+
                 <div className = "profile-container">
                     <div>First name</div>
-                    <div></div>
-                    {/* <div className = "info-item">{First_name}</div>  */}
+                    <input
+                        type="text"
+                        name="firstName"
+                        // value={data.firstName}
+                        // onChange={handleChange}
+                        />
                 </div>
+
                 <div className = "profile-container">
-                    <div>Last Name</div>
-                    {/* <div className = "info-item">{Last_name}</div>  */}
+                    <div>Last name</div>
+                    <input
+                        type="text"
+                        name="lastName"
+                        // value={data.lastName}
+                        // onChange={handleChange}
+                        />
                 </div>
-                </div>
+
                 <div className = "profile-container">
-                    <div>Phone</div>
-                    {/* <div className = "info-item">{Phone_number}</div>  */}
+                    <div>Phone number</div>
+                    <input
+                        type="number"
+                        name="phoneNumber"
+                        // value={data.phoneNumber}
+                        // onChange={handleChange}
+                        />
                 </div>
+
                 <div className = "profile-container">
                     <div>Email</div>
-                    {/* <div className = "info-item">{Email}</div>  */}
+                    <input
+                        type="text"
+                        name="email"
+                        // value={data.email}
+                        // onChange={handleChange}
+                        />
                 </div>
+
+                <div className = "profile-container">
+                    <div>State</div>
+                    <input
+                        type="text"
+                        name="state"
+                        // value={data.state}
+                        // onChange={handleChange}
+                        />
+                </div>
+
                 <div className = "profile-container">
                     <div>Position</div>
-                    {/* <div className = "info-item">{Position}</div>  */}
+                    <input
+                        type="text"
+                        name="position"
+                        // value={data.position}
+                        // onChange={handleChange}
+                        />
                 </div>
+
                 <div className = "profile-container">
                     <div>Status</div>
-                    {/* <div className = "info-item">{Status}</div>  */}
-                </div> 
-                <div className = "profile-container">
-                    <div>Industry Experience</div>
-                    {/* <div className = "info-item">{Years_industry_experience}</div>  */}
+                    <input
+                        type="text"
+                        name="status"
+                        // value={data.status}
+                        // onChange={handleChange}
+                        />
                 </div>
+
                 <div className = "profile-container">
-                    <div>Interview Notes</div>
-                    {/* <div className = "info-item">{Interview_notes}</div>  */}
+                    <div>Curriculum Vitae</div>
+                    <input
+                        type="text"
+                        name="cv"
+                        // value={data.cv}
+                        // onChange={handleChange}
+                        />
                 </div>
+
                 <div className = "profile-container">
-                    <label htmlFor = "mentor-input">Mentor Comment</label>
-                    <input className='mentor-input-field' type='text' placeholder='Input your comment for the workshop.' onChange={handleInputChange}/>
-                </div> 
+                    <div>Interview notes</div>
+                    <input
+                        type="text"
+                        name="interviewNotes"
+                        // value={data.interviewNotes}
+                        // onChange={handleChange}
+                        />
+                </div>
+
+                <div className = "profile-container">
+                    <div>Metor comments</div>
+                    <input
+                        type="text"
+                        name="mentorComments"
+                        // value={data.mentorComments}
+                        // onChange={handleChange}
+                        />
+                </div>
+
                 <div className = "profile-container">
                     <div>Feedback from She Codes</div>
-                    {/* <div className = "info-item">{Feedback_for_mentors}</div>  */}
-                </div> 
-                <div className = "profile-container">
-                    <div>CV</div>
-                    {/* <div className = "info-item">{CV}</div>  */}
+                    <input
+                        type="text"
+                        name="feedback"
+                        // value={data.feedback}
+                        // onChange={handleChange}
+                        />
                 </div>
+
                 <div>
                 <button className = "button">Edit</button>
-            </div>     
-        </div>
+                </div>     
+
+            </div>
+        </form>
     );
 };
 
