@@ -12,7 +12,7 @@ const initialState = {
     phone_number: "",
     state: "",
     position: "",
-    skills: ["HTML/CSS","Python"],
+    skills: [],
     cv: "",
     interview_notes: "",
     feedback_for_mentors:"",
@@ -25,31 +25,36 @@ const initialState = {
 function RegisterForm() {
 
     const [formData, setFormData] = useState(initialState);
+    
     const [selectedList, setSelectedList] =useState([])
 
     const navigate = useNavigate()
 
     const handleInputChange = (e) => {
         e.preventDefault();
-        console.log(e.target.name, e.target.value);
 
         if(e.target.name === 'skills') {            
             let { options } = e.target
             options = Array.apply(null, options)
             const selectedValues = options.filter(x => x.selected).map(x => x.value)
             setSelectedList(selectedValues)
-            console.log(e.target.name,selectedValues)
+            console.log(e.target.name, selectedValues)
+
+            const newState = {
+                ...formData,
+                [e.target.name]: selectedValues,
+            }
+            setFormData(() => newState)
         }
-
-        const newState = {
-            ...formData,
-            [e.target.name]: e.target.value,
-        }      
-        setFormData(() => newState);
-
+            else if (e.target.name !== 'skills') {
+                const newState = {
+                    ...formData,
+                    [e.target.name]: e.target.value,
+                }      
+                setFormData(() => newState);
+        }
     }
-
-
+    
     const handleSubmit = (e) => {
         e.preventDefault(); 
         postData().then((response) => {
@@ -57,7 +62,6 @@ function RegisterForm() {
             navigate("/");
         })
     }
-
 
     const postData = async () => {
         const response = await
@@ -69,9 +73,11 @@ function RegisterForm() {
                 body: JSON.stringify(formData),
             })
             return response.json()
-            console.log("formData:", formData)
+            console.log("formData:",formData)
+  
     }
 
+    
     return (
     <div className='form'>
         <div className='form-body'>
@@ -123,11 +129,11 @@ function RegisterForm() {
 
             <div>
             <label className='form_label' htmlFor='skills'>Skills</label>
-            <select className='form_dropdown_skills' multiple name='skills' onChange={handleInputChange}>
+            <select className='form_dropdown_skills' name='skills' multiple onChange={handleInputChange}>
                 <option value="">Choose Skills</option>
-                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="CSS/HTML">HTML/CSS</option>
                 <option value="Python">Python</option>
-                <option value="DJANGO/DRF">DJANGO/DRF</option>
+                <option value="DJANGO/DRF">Django/DRF</option>
                 <option value="JavaScript/ReactJS">JavaScript/ReactJS</option>
             </select>
             </div>
