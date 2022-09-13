@@ -72,7 +72,7 @@ const LoginForm = ({setLoggedInUser}) => {
         onChange={handleChange}/></div>
         <div className="container">
         <button type="submit" onClick={handleSubmit}>Login</button>
-        <button type="register" >Register</button></div>
+        <button type="register" onClick={()=> navigate("/register")} >Register</button></div>
         </form>
         </div></div>
 );
