@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import "./MentorProfile.css"
+import axios from 'axios';
 
 const initialState = {
-    firstName: "",
-    lastNname: "",
+    first_name: "",
+    lastName: "",
     userName: "",
-    passWord: "",
     email: "",
     phoneNumber: "",
-    cv: "",
     state: "",
-    interviewNotes: "",
-    feedback: "",
-    mentorComments: "",
+    skills: [],
+    status: "",
     position: "",
-    status: "1",
+    cv: "",
+    interviewNotes: "",
+    mentorComments: "",
+    feedback: "",
 }
 
 const MentorProfile = () => {
@@ -24,50 +24,93 @@ const MentorProfile = () => {
     // const userLogin = useSelector((state) => state.userLogin)
     // const { userInfo } = userLogin;
 
-    // const [userData, setUserData] = useState({});
+    const [user, setUser] = useState(initialState);
 
-    // placeholder for the user update
+    const handleChange = (e) => {
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        })
+        console.log(e.target.name,e.target.value);
+        console.log(user);
+        console.log(process.env.REACT_APP_API_URL)
+    }
 
-    const [formData, setFormData] = useState(initialState);
+    const { id } = useParams();
+        console.log(id)
 
-    // const handleInputChange = (e) => {
-    //     const newState = {
-    //         ...formData,
-    //         [e.target.name]: e.target.value
-    //     }      
-    //     setFormData(newState);
-    // }
+    // 
 
-    // const handleChange = (e) => {
-    //     setData({ ...data, [e.target.name]: e.target.value });
-    // };
+    const getUser = async () => {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}users/${id}`);
+        const user = await res.json();
+        setUser(user);
+    };
+    
+    useEffect(() => {
+        getUser();
+    }, [id]);
+
+    // 
+    
+    // useEffect(() => {
+    //     if (!id) {return}
+
+    //         fetch(`${process.env.REACT_APP_API_URL}users/${id}`)
+    //         .then((response) => {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             }
+    //         })
+    //         .then((user) => console.log(user))
+    //         .catch((err) => {
+    //             console.log(err);
+    //             console.log(err.message);
+    //         });
+    // }, [id]);
+
     
     // const handleSubmit = (e) => {
     //     e.preventDefault();
-    //     console.log(data);
+    //     console.log(user);
     // };
+
+    // a placeholder for catch - clean up the form once the user presses the button
     
     return (
         <form className = "form">
             <div className = "profile-body">
-
+{/* 
+            {user.map(user => ( */}
                 <div className = "profile-container">
                     <div>First name</div>
                     <input
                         type="text"
-                        name="firstName"
-                        // value={data.firstName}
-                        // onChange={handleChange}
+                        name="first_name"
+                        // key={user.id}
+                        value={user.first_name}
+                        onChange={handleChange}
                         />
                 </div>
+            {/* ))} */}
 
                 <div className = "profile-container">
                     <div>Last name</div>
                     <input
                         type="text"
                         name="lastName"
-                        // value={data.lastName}
-                        // onChange={handleChange}
+                        value={user.last_name}
+                        onChange={handleChange}
+                        />
+                </div>
+
+                <div className = "profile-container">
+                    <div>User name</div>
+                    <input
+                        type="text"
+                        name="userName"
+                        value={user.username}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -76,8 +119,8 @@ const MentorProfile = () => {
                     <input
                         type="number"
                         name="phoneNumber"
-                        // value={data.phoneNumber}
-                        // onChange={handleChange}
+                        value={user.phone_number}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -86,8 +129,8 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="email"
-                        // value={data.email}
-                        // onChange={handleChange}
+                        value={user.email}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -96,18 +139,18 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="state"
-                        // value={data.state}
-                        // onChange={handleChange}
+                        value={user.state}
+                        onChange={handleChange}
                         />
                 </div>
 
                 <div className = "profile-container">
-                    <div>Position</div>
+                    <div>Skills</div>
                     <input
                         type="text"
-                        name="position"
-                        // value={data.position}
-                        // onChange={handleChange}
+                        name="skills"
+                        value={user.skills}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -116,8 +159,18 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="status"
-                        // value={data.status}
-                        // onChange={handleChange}
+                        value={user.status}
+                        onChange={handleChange}
+                        />
+                </div>
+
+                <div className = "profile-container">
+                    <div>Position</div>
+                    <input
+                        type="text"
+                        name="position"
+                        value={user.position}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -126,8 +179,8 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="cv"
-                        // value={data.cv}
-                        // onChange={handleChange}
+                        value={user.cv}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -136,8 +189,8 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="interviewNotes"
-                        // value={data.interviewNotes}
-                        // onChange={handleChange}
+                        value={user.interviewNotes}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -146,8 +199,8 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="mentorComments"
-                        // value={data.mentorComments}
-                        // onChange={handleChange}
+                        value={user.mentorComments}
+                        onChange={handleChange}
                         />
                 </div>
 
@@ -156,19 +209,21 @@ const MentorProfile = () => {
                     <input
                         type="text"
                         name="feedback"
-                        // value={data.feedback}
-                        // onChange={handleChange}
+                        value={user.feedback}
+                        onChange={handleChange}
                         />
                 </div>
 
-                <div>
-                <button className = "button">Edit</button>
-                </div>     
+            
 
+                <div>
+                <button type = "submit" className = "button">Edit</button>
+                </div>
+
+            
             </div>
         </form>
     );
 };
 
 export default MentorProfile;
-

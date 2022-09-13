@@ -1,7 +1,7 @@
-import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './Components/Nav';
+import './App.css';
 
 // import pages
 
@@ -22,10 +22,12 @@ function App() {
       <div>
         <Nav />
         <Routes>
-          <Route exact path="/" element={<LoginPage setLoggedInUser={setLoggedInUser} />} />
-          <Route exact path="/register" element={<RegisterForm />} />
-          <Route exact path="/profile" element={<MentorProfile />} />
-          <Route exact path="/dashboard" element={<DashboardPage setLoggedInUser={setLoggedInUser} />} />
+          <Route path="/" element={<LoginPage setLoggedInUser={setLoggedInUser} />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/dashboard" element={<DashboardPage setLoggedInUser={setLoggedInUser} />} />
+          <Route path="/profile" element={<MentorProfile />}>
+            <Route path=":id" element={<MentorProfile />} />
+          </Route> 
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
