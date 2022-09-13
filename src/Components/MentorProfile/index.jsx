@@ -194,7 +194,7 @@ const MentorProfile = () => {
                 </div>
 
                 <div className = "profile-container">
-                    <div>Metor comments</div>
+                    <div>Mentor comments</div>
                     <input
                         type="text"
                         name="mentorComments"
