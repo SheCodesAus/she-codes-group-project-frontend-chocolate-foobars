@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from "react";
 import DataTable from 'react-data-table-component';
+import './Dashboard.css'
 
+// built using instructions on https://react-data-table-component.netlify.app/?path=/story/examples-filtering--filtering&globals=backgrounds.grid:false
+// to install npm install react-data-table-component
+// currently unable to get second filtered component working
 
 const Dashboard = () => {
 
@@ -67,7 +71,16 @@ const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
 );
     
     const columns = [
-        { name: "First Name", selector: row => row.first_name, sortable: true },
+        { name: "View Profile", 
+        button: true,
+        datatag:"allowRowEvents",
+        cell: MentorData => (
+            <a href={(`/profile/${MentorData.id}`)} target="_blank" rel="noopener noreferrer">
+        View Profile</a>) },
+        { name: "First Name", 
+        selector: row => row.first_name, 
+        sortable: true
+        },
         { name: "Last Name", selector: row => row.last_name, sortable: true },
         { name: "Email", selector: row => row.email, sortable: true },
         { name: "State", selector: row => row.state, sortable: true  },
@@ -89,14 +102,33 @@ const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
 		};
 
 		return (
-			<FilterComponentOne onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+			<FilterComponentOne FilterComponentTwo onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+            
 		)
         ;
+        
+	}, [filterText, resetPaginationToggle]);
+
+    const subHeaderComponentMemoTwo = React.useMemo(() => {
+		const handleClear = () => {
+			if (filterText) {
+				setResetPaginationToggle(!resetPaginationToggle);
+				setFilterText('');
+			}
+		};
+
+		return (
+			<FilterComponentTwo FilterComponentTwo onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+            
+		)
+        ;
+        
 	}, [filterText, resetPaginationToggle]);
 
     
 
     return (
+        
         <DataTable
         title="Mentors"
             columns={columns}
@@ -104,7 +136,7 @@ const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
             pagination
             paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
             subHeader
-            subHeaderComponent={subHeaderComponentMemo}
+            subHeaderComponent={[subHeaderComponentMemo,subHeaderComponentMemoTwo]}
             selectableRows
             persistTableHead
         />
