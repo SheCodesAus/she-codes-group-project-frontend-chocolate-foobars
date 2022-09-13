@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./MentorProfile.css"
-import axios from 'axios';
 
 const initialState = {
     first_name: "",
