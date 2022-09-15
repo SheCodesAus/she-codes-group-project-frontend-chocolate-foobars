@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./MentorProfile.css"
+// import DropdownInput from "React-Bootstrap"
 
 const initialState = {
     first_name: "",
-    lastName: "",
-    userName: "",
+    last_name: "",
+    user_name: "",
     email: "",
-    phoneNumber: "",
+    phone_number: "",
     state: "",
     skills: [],
     status: "",
     position: "",
     cv: "",
-    interviewNotes: "",
-    mentorComments: "",
-    feedback: "",
+    interview_notes: "",
+    mentor_omments: "",
+    feedback_for_mentors: "",
 }
 
 const MentorProfile = () => {
@@ -25,15 +26,50 @@ const MentorProfile = () => {
 
     const [user, setUser] = useState(initialState);
 
-    const handleChange = (e) => {
+    // const handleChange = (e) => {
+    //     setUser({
+    //         ...user,
+    //         [e.target.name]: e.target.value
+    //     })
+    //     console.log(e.target.name,e.target.value);
+    //     console.log(user);
+    //     console.log(process.env.REACT_APP_API_URL)
+    // }
+
+    const handleChange = async (e) => {
+        e.preventDefault();
         setUser({
             ...user,
             [e.target.name]: e.target.value
         })
-        console.log(e.target.name,e.target.value);
-        console.log(user);
-        console.log(process.env.REACT_APP_API_URL)
-    }
+        try {
+            let res = await fetch(`${process.env.REACT_APP_API_URL}users/${id}/edit`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    user_name: user.user_name,
+                    email: user.email,
+                    phone_number: user.phone_number,
+                    state: user.state,
+                    skills: user.skills,
+                    status: user.status,
+                    position: user.position,
+                    cv: user.cv,
+                    interview_notes: user.interview_notes,
+                    mentor_omments: user.mentor_omments,
+                    feedback_for_mentors: user.feedback_for_mentors,
+                }),
+            });
+            console.log(user)
+            let resJson = await res.json();
+            if (res.status === 200) {
+                setUser("");
+            }
+        } catch (err) {
+            console.log(err);
+            }
+        };
 
     const { id } = useParams();
         console.log(id)
@@ -77,7 +113,7 @@ const MentorProfile = () => {
     // a placeholder for catch - clean up the form once the user presses the button
     
     return (
-        <form className = "form">
+        <form className = "form" onSubmit={handleChange}>
             <div className = "profile-body">
 {/* 
             {user.map(user => ( */}
@@ -88,7 +124,7 @@ const MentorProfile = () => {
                         name="first_name"
                         // key={user.id}
                         value={user.first_name}
-                        onChange={handleChange}
+                        onChange={(e) => setUser(e.target.value)}
                         />
                 </div>
             {/* ))} */}
@@ -207,13 +243,11 @@ const MentorProfile = () => {
                     <div>Feedback from She Codes</div>
                     <input
                         type="text"
-                        name="feedback"
-                        value={user.feedback}
+                        name="feedback_for_mentors"
+                        value={user.feedback_for_mentors}
                         onChange={handleChange}
                         />
                 </div>
-
-            
 
                 <div>
                 <button type = "submit" className = "button">Edit</button>

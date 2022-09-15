@@ -46,3 +46,13 @@ input {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+@media (max-width: 767px) {
+form {
+    width: 100%;
+}
+
+.glow-up {
+    font-size: 1.3em
+}
+}
