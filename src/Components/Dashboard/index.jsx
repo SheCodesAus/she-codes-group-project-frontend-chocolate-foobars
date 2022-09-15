@@ -90,7 +90,8 @@ const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
     const [filterText, setFilterText] = React.useState('');
 	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
 	const filteredItems = MentorData.filter(
-		item => item.state && item.state.toLowerCase().includes(filterText.toLowerCase()),
+		item => item.state && item.state.toLowerCase().includes(filterText.toLowerCase())  ||
+       item.status && item.status.toLowerCase().includes(filterText.toLowerCase()),
 	);
 
 	const subHeaderComponentMemo = React.useMemo(() => {
@@ -102,7 +103,7 @@ const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
 		};
 
 		return (
-			<FilterComponentOne FilterComponentTwo onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
+			<FilterComponentOne onFilter={e => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} />
             
 		)
         ;
