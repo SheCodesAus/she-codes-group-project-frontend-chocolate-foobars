@@ -37,7 +37,9 @@ const LoginForm = ({setLoggedInUser}) => {
         if (credentials.username && credentials.password) {
             postData().then((data) => {
             console.log(data)    
-                window.localStorage.setItem("token", data.token);
+                window.localStorage.setItem("token", data.token,);
+                window.localStorage.setItem("id", data.id,);
+                window.localStorage.setItem("SuperUser", data.superuser,);
                 setLoggedInUser({id: data.id, isSuperUser: data.superuser})
                 if (data.superuser === true) {
                     navigate("/dashboard");
