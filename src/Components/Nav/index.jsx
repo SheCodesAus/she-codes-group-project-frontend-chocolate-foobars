@@ -9,10 +9,11 @@ const Nav = () => {
         useState(!!window.localStorage.getItem('token')
         );
 
-    const [SuperUser, setSuperUser] =  useState({})
+    const [SuperUser, setIsSuperUser] =  useState(false)
     useEffect(() => {
         const superUserData = localStorage.getItem('SuperUser')
-        setSuperUser(JSON.parse(superUserData))
+        setIsSuperUser(JSON.parse(superUserData))
+        console.log(typeof superUserData)
     }, [])
 
     const [profileID, setProfileID] = useState({})
@@ -38,9 +39,10 @@ const Nav = () => {
     }, [window.localStorage, location]
     )
     React.useEffect(() => {
-        setSuperUser(!!window.localStorage.getItem('SuperUser'))
+        setIsSuperUser(!!window.localStorage.getItem('SuperUser'))
     }, [window.localStorage, location]
     )
+    
 
     return (
         <nav className="navigation">
@@ -62,8 +64,8 @@ const Nav = () => {
                         <li><Link to="/" onClick={LogOut}>Logout</Link></li>)
                         :
                         [(<li><Link to="/">Login</Link></li>), (<li><Link to="/register">Register</Link></li>)]}
-                    {SuperUser ? (
-                        <li><Link to="/dashboard">Dashboard</Link></li>) : ("")}
+                    {  SuperUser ?
+                        (<li><Link to="/dashboard">Dashboard</Link></li>) : ("") }
                     {LoggedIn ? (<li><Link to={'/profile/' + profileID}>Profile</Link></li>) : ("")}
                 </ul></div>
         </nav>
