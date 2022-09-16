@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Nav.css"
 import Logo from "../../images/ChoCode-logo-full.png";
@@ -9,6 +9,19 @@ const Nav = () => {
         useState(!!window.localStorage.getItem('token')
         );
 
+    const [SuperUser, setIsSuperUser] =  useState(false)
+    useEffect(() => {
+        const superUserData = localStorage.getItem('SuperUser')
+        setIsSuperUser(JSON.parse(superUserData))
+        console.log(typeof superUserData)
+    }, [])
+
+    const [profileID, setProfileID] = useState({})
+    useEffect(() => {
+        const data = localStorage.getItem('id')
+        setProfileID(JSON.parse(data))
+    }, [])
+
     const [isNavExpanded, setIsNavExpanded] = useState(false)
     const toggleHamburger = () => {
         setIsNavExpanded(!isNavExpanded)
@@ -16,6 +29,8 @@ const Nav = () => {
 
     const LogOut = () => {
         window.localStorage.removeItem("token");
+        window.localStorage.removeItem("SuperUser");
+        window.localStorage.removeItem("id");
         setLoggedIn(false)
     }
 
@@ -23,6 +38,11 @@ const Nav = () => {
         setLoggedIn(!!window.localStorage.getItem('token'))
     }, [window.localStorage, location]
     )
+    React.useEffect(() => {
+        setIsSuperUser(!!window.localStorage.getItem('SuperUser'))
+    }, [window.localStorage, location]
+    )
+    
 
     return (
         <nav className="navigation">
@@ -43,10 +63,11 @@ const Nav = () => {
                     {LoggedIn ? (
                         <li><Link to="/" onClick={LogOut}>Logout</Link></li>)
                         :
-                        (<li><Link to="/">Login</Link></li>)}
-                    <li><Link to="/dashboard">Dashboard</Link></li>
-                    <li><Link to="/register">Register</Link></li>
-                    <li><Link to="/profile">Profile</Link></li></ul></div>
+                        [(<li><Link to="/">Login</Link></li>), (<li><Link to="/register">Register</Link></li>)]}
+                    {  SuperUser ?
+                        (<li><Link to="/dashboard">Dashboard</Link></li>) : ("") }
+                    {LoggedIn ? (<li><Link to={'/profile/' + profileID}>Profile</Link></li>) : ("")}
+                </ul></div>
         </nav>
     );
 }
