@@ -64,7 +64,10 @@ const FilterComponentTwo = ({ filterText, onFilter, onClear }) => (
         onChange={onFilter} value={filterText}>
         <option value="All">Filter By Status</option>
         <option value="Application received">Application received</option>
+        <option value="Ready for interview">Ready for interview</option>
         <option value="Position offered">Position offered</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
     </select>
 
 	</>
